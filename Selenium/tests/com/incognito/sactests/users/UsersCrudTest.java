@@ -104,7 +104,7 @@ public class UsersCrudTest {
 	   String login = "testupdateuser";
 	   user.openNewUserPage().createUser(login, "testupdateuser", "testupdateuser", "oldpassword", "oldpassword", "create@test.com", "Administrator ( Incognito )", "Create Test");
 	   user.searchUser(login);
-//	   user.updateUser(login, "testpassword", "testupdateuser2", "password", "password", "update@test.com", "CSR ( Incognito )", "Update Test");
+	   user.updateUser(login, "testpassword", "testupdateuser2", "password", "password", "update@test.com", "CSR ( Incognito )", "Update Test");
 	   assertTrue(user.successMessage());
 	   user.leftWithoutSave();
 	   
