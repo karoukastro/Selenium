@@ -43,7 +43,7 @@ public class UsersPage {
 		return new UsersPage(driver);
 	}
 	
-/*	public void updateUser(String newLogin, String fullName, String password, String confirm, String phone, String email, String profile, String description){
+	public void updateUser(String newLogin, String fullName, String password, String confirm, String phone, String email, String profile, String description){
 		WebElement formLoginName = driver.findElement(By.name("newLogin"));
 		WebElement formFullName = driver.findElement(By.name("name"));
 		WebElement formPassword = driver.findElement(By.name("password"));
@@ -63,7 +63,7 @@ public class UsersPage {
 		formDescription.sendKeys(description);
 		
 		formDescription.submit();
-	}*/
+	}
 	
 	public void leftWithoutSave(){
 		driver.findElement(By.linkText("Users")).click();
