@@ -102,11 +102,13 @@ public class UsersCrudTest {
    public void testUpdateUserAllFields(){
 	   
 	   String login = "testupdateuser";
-	   user.openNewUserPage().createUser(login, "testupdateuser", "testupdateuser", "oldpassword", "oldpassword", "create@test.com", "Administrator ( Incognito )", "Create Test");
-	   user.searchUser(login);
-	   user.updateUser(login, "testpassword", "testupdateuser2", "password", "password", "update@test.com", "CSR ( Incognito )", "Update Test");
+	   user.openNewUserPage().createUser(login, "testupdateuser", "password", "password", "12345678", "create@test.com", "Administrator ( Incognito )", "Create Test");
 	   assertTrue(user.successMessage());
-	   user.leftWithoutSave();
+	   System.out.println("Created User");
+	   user.openUserPage();
+	   user.searchUser(login);
+	   user.updateUser(login, "newtestupdateuser", "newpassword", "newpassword", "87654321", "update@test.com", "CSR ( Incognito )", "Update Test");
+	   assertTrue(user.successMessage());
 	   
    }
    
@@ -119,10 +121,21 @@ public class UsersCrudTest {
 	   
    }
    
+   @Test 
+   public void testDeleteUser(){
+	  
+	   String login = "testdeleteuser";
+	   user.openNewUserPage().createUser(login, "Test Full Name", "12345", "12345", "12345678", "test@test.com.br", "CSR ( Incognito )", "Description");
+	   assertTrue(user.successMessage());
+	   user.openUserPage();
+	   user.deleteUser(login);
+	//   assertTrue(user.successMessage());
+   }
+   
    @After
 	public void tearsDown(){
-	   driver.findElement(By.linkText("Logout")).click();
-	   driver.close();
+	 //  driver.findElement(By.linkText("Logout")).click();
+	 //  driver.close();
 	}
    
 }
