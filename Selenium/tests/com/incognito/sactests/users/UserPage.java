@@ -12,18 +12,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import com.incognito.sactests.users.NewUsersPage;
+import com.incognito.sactests.resource.Url;
+import com.incognito.sactests.users.NewUserPage;
 
-public class UsersPage {
+public class UserPage {
 
 	private final WebDriver driver;
 	
-	public UsersPage(WebDriver driver){
+	public UserPage(WebDriver driver){
 		this.driver = driver;
 	}
 	
 	public void logSAC(String user, String upassword){
 		
+		driver.get(new Url().getUrlBase());
 		WebElement username = driver.findElement(By.id("Login_username"));
         username.sendKeys(user);
         WebElement password = driver.findElement(By.id("Login_password"));
@@ -32,57 +34,34 @@ public class UsersPage {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 	
-	public NewUsersPage openUserPage(){
+	public NewUserPage openUserPage(){
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		driver.findElement(By.id("adminTab")).click();
 		driver.findElement(By.linkText("Users")).click();
-		return new NewUsersPage(driver);
+		return new NewUserPage(driver);
 	}	
 	
-	public NewUsersPage openNewUserPage(){
+	public NewUserPage openNewUserPage(){
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		driver.findElement(By.id("adminTab")).click();
 		driver.findElement(By.linkText("Users")).click();
 		driver.findElement(By.linkText("Create")).click();
-		return new NewUsersPage(driver);
+		return new NewUserPage(driver);
 	}
 	
-	public UsersPage searchUser(String name){
+	public UserPage searchUser(String name){
 		WebElement criteria = driver.findElement(By.id("UserHeaderSearch_searchCriteria"));
 		criteria.sendKeys(name);
 		criteria.submit();
 		WebElement user = driver.findElement(By.linkText(name));
 		user.click();
-		return new UsersPage(driver);
+		return new UserPage(driver);
 	}
 	
-	public void updateUser(String newLogin, String fullName, String password, String confirm, String phone, String email, String profile, String description){
-		
-		WebElement formLoginName = driver.findElement(By.name("loginName"));
-		WebElement formFullName = driver.findElement(By.name("name"));
-		WebElement formPhoneNunber = driver.findElement(By.name("phoneNumber"));
-		WebElement formEmailAddress = driver.findElement(By.name("emailAddress"));
-		Select cbSecurityProfile = new Select(driver.findElement(By.name("securityProfile")));
-		WebElement formDescription = driver.findElement(By.name("description"));
-		
-		formLoginName.clear();
-		formLoginName.sendKeys(newLogin);
-		formFullName.clear();
-		formFullName.sendKeys(fullName);
-		formPhoneNunber.clear();
-		formPhoneNunber.sendKeys(phone);
-		formEmailAddress.clear();
-		formEmailAddress.sendKeys(email);
-		cbSecurityProfile.selectByVisibleText(profile);
-		formDescription.clear();
-		formDescription.sendKeys(description);
-		
-		formDescription.submit();
-		//driver.findElement(By.linkText("Save"));
-	}
+	
 	
 	public void deleteUser(String name){
-		UsersPage user = new UsersPage(driver);
+		UserPage user = new UserPage(driver);
 		user.searchUser(name);
 		driver.findElement(By.linkText("Delete"));
 		

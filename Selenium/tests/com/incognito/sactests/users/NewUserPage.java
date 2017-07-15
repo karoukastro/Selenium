@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class NewUsersPage {
+public class NewUserPage {
 	
 	private final WebDriver driver;
 	
-	public NewUsersPage(WebDriver driver){
+	public NewUserPage(WebDriver driver){
 		this.driver = driver;
 	}
 	
