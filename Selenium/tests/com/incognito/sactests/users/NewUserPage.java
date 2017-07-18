@@ -33,7 +33,7 @@ public class NewUserPage {
 		cbSecurityProfile.selectByVisibleText(profile);
 		formDescription.sendKeys(description);
 		
-		formDescription.submit();
+		driver.findElement(By.linkText("Save")).click();;
 		//driver.findElement(By.linkText("Save"));
 	
 	}

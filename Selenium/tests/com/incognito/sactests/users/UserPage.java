@@ -8,9 +8,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.incognito.sactests.resource.Url;
 import com.incognito.sactests.users.NewUserPage;
@@ -26,6 +28,7 @@ public class UserPage {
 	public void logSAC(String user, String upassword){
 		
 		driver.get(new Url().getUrlBase());
+		driver.manage().window().maximize();
 		WebElement username = driver.findElement(By.id("Login_username"));
         username.sendKeys(user);
         WebElement password = driver.findElement(By.id("Login_password"));
@@ -63,9 +66,11 @@ public class UserPage {
 	public void deleteUser(String name){
 		UserPage user = new UserPage(driver);
 		user.searchUser(name);
-		driver.findElement(By.linkText("Delete"));
 		
-	/*	 String parentWindowHandle = driver.getWindowHandle(); // save the current window handle.
+		
+		
+		/*	
+		 String parentWindowHandle = driver.getWindowHandle(); // save the current window handle.
 		  WebDriver popup = null;
 		  
 		  Iterator<String> windowIterator = driver.getWindowHandles();
@@ -75,9 +80,9 @@ public class UserPage {
 		    if (popup.getTitle().equals("Google") {
 		      break;
 		    }
-		  }*/
+		 //
 		
-	/*	
+	
 		//Guardando o windowHandle da janela inicial, porque vou precisar mudar pra ela no final do teste e, além disso, vou usar esse valor para descobrir o windowHandle da nova janela
 		String windowHandleJanelaInicial = driver.getWindowHandle();
 		
@@ -109,8 +114,8 @@ public class UserPage {
 
 		driver.switchTo().window(windowHandleJanelaInicial);
 
-	*/
-		/*
+	
+		//
 		String janelaAtual = driver.getWindowHandle();
 		Set<String> janelas = driver.getWindowHandles();
 
@@ -120,16 +125,29 @@ public class UserPage {
 		     //if(driver.getCurrentURL().equals("URL DO BROWSER")) {
 		      //  break;
 		    // }
-		}
+		}*/
 		
-		*/
+		
 		//String nomeDaJanelaDeDestino = "Delete";
 		//driver.switchTo().window("dialog-confirm");
 		//driver.findElement(By.name("OK")).click();
-		//driver.switchTo().window(")
+		
 		//driver.findElement(By.linkText("OK")).click();
+		//driver.switchTo().window(");
 		//Alert alert = driver.switchTo().alert();
 		//alert.accept();
+				
+		//Alert alert = driver.switchTo().alert();
+		//alert.accept();
+		//driver.switchTo().activeElement();
+		//driver.findElement(By.linkText("OK")).click();
+		
+		driver.findElement(By.linkText("Delete")).click(); 
+		driver.findElement(By.className("ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only")).click(); 
+		//driver.getWindowHandle()
+		
+
+				
 		
 	}
 	

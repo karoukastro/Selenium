@@ -116,10 +116,9 @@ public class UserCrudTest {
    }
    
    @Test 
-   public void testUpdateUserWithoutMandatoryFields(){
+   public void testUpdateUserWithoutMandatoryFields(){ //Salva so com Login name, ver erro
 	   
-	   String temp = Thread.currentThread().getStackTrace()[1].getMethodName();
-	   String login = temp.toLowerCase();
+	   String login = "testUpdateUserWithoutMandatoryFields";
 	   
 	   user.openNewUserPage().createUser(login, login, "password", "password", "12345678", "create@test.com", "Administrator ( Incognito )", "Create Test");
 	   assertTrue(user.successMessage());
@@ -132,15 +131,15 @@ public class UserCrudTest {
 	   //Only Full Name
 	   editUser.updateUser("", "testnotmandatoryfields", "", "", "", "", "Administrator ( Incognito )", "");
 	   assertTrue(user.errorMessage());
-	   user.leftWithoutSave();
+	   //user.leftWithoutSave();
 	   
 	   //Only Security Profile
 	   editUser.updateUser("", "", "", "", "", "", "Administrator ( Incognito )", "");
-	   
+	   assertTrue(user.errorMessage());
 	   
 	   //Only Login Name
 	   editUser.updateUser("updatelogin", "", "", "", "", "", "Administrator ( Incognito )", "");
-	  // assertTrue(user.errorMessage());
+	   assertTrue(user.errorMessage());
 	 
 	   
    }
@@ -151,6 +150,7 @@ public class UserCrudTest {
 	   String login = "testdeleteuser";
 	   user.openNewUserPage().createUser(login, "Test Full Name", "12345", "12345", "12345678", "test@test.com.br", "CSR ( Incognito )", "Description");
 	   assertTrue(user.successMessage());
+	   
 	   user.openUserPage();
 	   user.deleteUser(login);
 	//   assertTrue(user.successMessage());
